@@ -126,7 +126,7 @@ export class AppController {
   ){
     var resultado = Number(ParametroConsulta.numero1) + Number(ParametroConsulta.numero2);
     var total= request.signedCookies["total"];
-    if( total == "NaN") {
+    if( total == undefined) {
       response.cookie('total', 100, { signed: true, },);
       response.send('El valor de la cookie es 100');
     }else {
@@ -198,7 +198,7 @@ export class AppController {
   divicion(
       @Headers() headers, @Req() request, @Res({passthrough: true}) response,
   ){
-    var resultado = Number(headers.numerouno) / Number(headers.numerodos);
+    var resultado = Number(headers.numero1) / Number(headers.numero2);
     var total= request.signedCookies["total"];
     if(total == undefined) {
       response.cookie('total', 100, { signed: true, },);
@@ -210,7 +210,7 @@ export class AppController {
         response.cookie('total', 100, {signed: true,},);
         return "Terminaste el juego";
       }else{
-
+        return "División="+ resultado+"\nValor de la cookie="+ total1;
       }
     }
   }
