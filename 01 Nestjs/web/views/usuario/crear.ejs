@@ -1,0 +1,53 @@
+
+
+<%- include('../comunes/cabecera') %>
+
+
+
+
+    <div class='container'>
+        <!--  !== ! = =      -->
+        <% const existeMensaje = typeof datos.mensaje !== 'undefined'%>
+        <% if(existeMensaje){%>
+            <div class="alert alert-success" role="alert">
+                <%= datos.mensaje%>
+            </div>
+        <%}%>
+
+        <h1>Crear usuario</h1>
+        <form action='/usuario/crear-usuario-formulario' method='post'>
+            <div class="mb-3">
+                <label for="nombre" class="form-label">
+                    Nombre*
+                </label>
+                <input placeholder="Ej: Adrian"
+                       type="text"
+                       name="nombre"
+                       class="form-control"
+                       id="nombre"
+                       aria-describedby="ayudaNombre">
+                <div id="ayudaNombre" class="form-text">
+                    Ingrese el nombre.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="apellido" class="form-label">
+                    Apellido*
+                </label>
+                <input placeholder="Ej: Eguez"
+                       type="text"
+                       name="apellido"
+                       class="form-control"
+                       id="apellido"
+                       aria-describedby="apellidoNombre">
+                <div id="apellidoNombre" class="form-text">
+                    Ingrese el apellido.
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Crear</button>
+        </form>
+    </div>
+
+
+
+<%- include('../comunes/footer') %>

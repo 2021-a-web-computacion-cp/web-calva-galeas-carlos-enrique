@@ -1,0 +1,134 @@
+
+
+<%- include('../comunes/cabecera') %>
+
+
+
+
+    <div class='container'>
+        
+        <div class="container">
+        <%const existeMensaje = typeof  datos.mensaje !=  'undefined'%>
+        <%if(existeMensaje){%>
+
+            <%if(datos.mensaje ==' Ingrese los datos correctamente'){%>
+            <div class="alert alert-danger" role="alert">
+                <%= datos.mensaje%>
+            </div>
+        <%}else{%>
+            <div class="alert alert-success" role="alert">
+                <%= datos.mensaje%>
+            </div>
+            <%}%>
+        <%}%>
+    </div>
+
+        <h1>Crear Música</h1>
+        <form action='/musica/crear-musica-formulario' method='post'>
+		
+            <div class="mb-3">
+                <label for="nombre" class="form-label">
+                    Nombre*
+                </label>
+                <input placeholder="Ej: We Are Young ft. Janelle Monáe "
+                       type="text"
+                       name="nombre"
+                       class="form-control"
+                       id="nombre"
+                       aria-describedby="ayudanombre"
+					   required>
+                <div id="ayudanombre" class="form-text">
+                    Ingrese el nombre de la canción.
+                </div>
+            </div>
+			
+            <div class="mb-3">
+                <label for="autor" class="form-label">
+                    Autor*
+                </label>
+                <input placeholder="Ej: Fun"
+                       type="text"
+                       name="autor"
+                       class="form-control"
+                       id="autor"
+                       aria-describedby="ayudaautor"
+					   required>
+                <div id="ayudaautor" class="form-text">
+                    Ingrese el autor de la canción.
+                </div>
+            </div>
+			
+			<div class="mb-3">
+                <label for="genero" class="form-label">
+                    Género*
+                </label>
+                <input placeholder="Ej: Indie rock, indie pop"
+                       type="text"
+                       name="genero"
+                       class="form-control"
+                       id="genero"
+                       aria-describedby="ayudagenero"
+					   required>
+                <div id="ayudagenero" class="form-text">
+                    Ingrese el género de la canción.
+                </div>
+            </div>
+			
+			<div class="mb-3">
+                <label for="numeroReproducciones" class="form-label">
+                    Número de reproducciones*
+                </label>
+                <input placeholder="Ej: 928540578"
+                       type="text"
+                       name="numeroReproducciones"
+                       class="form-control"
+                       id="numeroReproducciones"
+                       aria-describedby="ayudanumeroReproducciones"
+					   required>
+                <div id="ayudanumeroReproducciones" class="form-text">
+                    Ingrese el número de reproducciones de la canción.
+                </div>
+            </div>
+			   
+			<div class="mb-3">
+				<label for="fechaLanzamiento" class="form-label"> 
+				Fecha de Lanzamiento*
+				</label>
+				<input placeholder="Ej: 18/12/2011"
+					   type="date"
+					   name="fechaLanzamiento"
+                       class="form-control"
+                       id="fechaLanzamiento"
+                       aria-describedby="ayudafechaLanzamiento"
+					   required>
+				<div id="ayudafechaLanzamiento" class="form-text"> 
+				      Ingrese la fecha de lanzamiento de la canción. 
+				</div>
+			</div>
+			
+			<div class="mb-3">
+				<label for="videoclip" class="form-label">
+					Videoclip
+				</label>
+				<select name="videoclip"
+                    class="form-control"
+                    id="videoclip"
+                    aria-describedby="ayudavideoclip">
+                <option value="true">  Si </option>
+                <option value="false"> No </option>
+				</select>
+				<div id="ayudavideoclip" class="form-text">
+					¿Tiene videoclip?
+				</div>
+            </div>
+		 
+
+            <button type="submit" class="btn btn-primary w-100">Crear</button>
+        </form>
+	</div>
+	
+	
+	
+
+
+<%- include('../comunes/footer') %>

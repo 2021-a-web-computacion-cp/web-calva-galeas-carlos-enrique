@@ -1,0 +1,134 @@
+
+<%- include('../comunes/cabecera') %>
+<div class="container">
+
+<h1> Actualizar Música </h1>
+       
+	   <form action="/musica/actualizar-musica-formulario/<%=datos.musica.id%>" method="post">
+		
+            <div class="mb-3">
+                <label for="nombre" class="form-label">
+                    Nombre*
+                </label>
+                <input placeholder="Ej: We Are Young ft. Janelle Monáe "
+                       type="text"
+                       name="nombre"
+                       class="form-control"
+                       id="nombre"
+					   value="<%=datos.musica.nombre%>"
+                       aria-describedby="ayudanombre">
+                <div id="ayudanombre" class="form-text">
+                    Ingrese el nombre de la canción.
+                </div>
+            </div>
+			
+            <div class="mb-3">
+                <label for="autor" class="form-label">
+                    Autor*
+                </label>
+                <input placeholder="Ej: Fun"
+                       type="text"
+                       name="autor"
+                       class="form-control"
+                       id="autor"
+					   value="<%=datos.musica.autor%>"
+                       aria-describedby="ayudaautor">
+                <div id="ayudaautor" class="form-text">
+                    Ingrese el autor de la canción.
+                </div>
+            </div>
+			
+			<div class="mb-3">
+                <label for="genero" class="form-label">
+                    Género*
+                </label>
+                <input placeholder="Ej: Indie rock, indie pop"
+                       type="text"
+                       name="genero"
+                       class="form-control"
+                       id="genero"
+					   value="<%=datos.musica.genero%>"
+                       aria-describedby="ayudagenero">
+                <div id="ayudagenero" class="form-text">
+                    Ingrese el género de la canción.
+                </div>
+            </div>
+			
+			<div class="mb-3">
+                <label for="numeroReproducciones" class="form-label">
+                    Número de reproducciones*
+                </label>
+                <input placeholder="Ej: 928540578"
+                       type="text"
+                       name="numeroReproducciones"
+                       class="form-control"
+                       id="numeroReproducciones"
+					   value="<%=datos.musica.numeroReproducciones%>"
+                       aria-describedby="ayudanumeroReproducciones">
+                <div id="ayudanumeroReproducciones" class="form-text">
+                    Ingrese el número de reproducciones de la canción.
+                </div>
+            </div>
+			   
+			<div class="mb-3">
+				<label for="fechaLanzamiento" class="form-label"> 
+				Fecha de Lanzamiento*
+				</label>
+				<input placeholder="Ej: 18/12/2011"
+					   type="date"
+					   name="fechaLanzamiento"
+                       class="form-control"
+                       id="fechaLanzamiento"
+					    <% if  ((datos.musica.fechaLanzamiento.getMonth()+1) < 10) { %>
+                            <% if  ((datos.musica.fechaLanzamiento.getDate()+1) < 10) { %>
+								value= "<%= (datos.musica.fechaLanzamiento.getFullYear())+"-0"+(datos.musica.fechaLanzamiento.getMonth()+1)+ "-0"+(datos.musica.fechaLanzamiento.getDate()+1) %>"
+                             <% } else {%>
+                                value= "<%= (datos.musica.fechaLanzamiento.getFullYear())+"-0"+(datos.musica.fechaLanzamiento.getMonth()+1)+ "-"+(datos.musica.fechaLanzamiento.getDate()+1) %>"
+                                <% } %>
+					    <%} else  {%>
+					        <% if  ((datos.musica.fechaLanzamiento.getDate()+1) < 10) { %>
+								value= "<%= (datos.musica.fechaLanzamiento.getFullYear())+ "-" +(datos.musica.fechaLanzamiento.getMonth()+1)+ "-0" +(datos.musica.fechaLanzamiento.getDate()+1) %>"
+							<% } else {%>
+						       value= "<%= (datos.musica.fechaLanzamiento.getFullYear())+ "-" +(datos.musica.fechaLanzamiento.getMonth()+1)+ "-" +(datos.musica.fechaLanzamiento.getDate()+1) %>"
+						    <% } %>
+					    <% } %>
+
+                       aria-describedby="ayudafechaLanzamiento">
+				<div id="ayudafechaLanzamiento" class="form-text"> 
+				      Ingrese la fecha de lanzamiento de la canción. 
+				</div>
+			</div>
+			
+			<div class="mb-3">
+				<label for="videoclip" class="form-label">
+					Videoclip
+				</label>
+				<select name="videoclip"
+                    class="form-control"
+                    id="videoclip"
+                    aria-describedby="ayudavideoclip">
+                <% if (datos.musica.videoclip==true){%>
+                <option value="true" selected> Si </option>
+                <option value="false"> No</option>
+                <%} else{%>
+                    <option value="true"> Si </option>
+                    <option value="false" selected> No </option>
+                <%}%>
+            </select>
+				<div id="ayudavideoclip" class="form-text">
+					¿Tiene videoclip?
+				</div>
+            </div>
+		 
+
+            <button type="submit" class="btn btn-primary w-100"> Actualizar </button>
+        </form>
+</div>
+	
+	
+	
+
+
+<%- include('../comunes/footer') %>
+
+

@@ -1,0 +1,98 @@
+
+
+<%- include('../comunes/cabecera') %>
+
+
+<div class='container'>
+
+    
+	 <%const existeMensaje = typeof  datos.mensaje !=  'undefined'%>
+    <%if(existeMensaje){%>
+        <%if(datos.mensaje ==' Se elimino la canción' || datos.mensaje == ' Ingrese los datos correctamente'){%>
+        <div class="alert alert-danger" role="alert">
+            <%= datos.mensaje%>
+        </div>
+    <%}else{%>
+        <div class="alert alert-success" role="alert">
+            <%= datos.mensaje%>
+        </div>
+    <%}%>
+    <%}%>
+
+
+    <h1> Lista de música </h1>
+    <form action='/musica/lista-musica' method='get'>
+        <div class="mb-3">
+            <label for="busqueda" class="form-label">
+                Busqueda
+            </label>
+            <input placeholder="Ej: We are young "
+                   type="text"
+                   name="busqueda"
+                   class="form-control"
+                   id="busqueda"
+                   aria-describedby="ayudaBusqueda">
+            <div id="ayudaBusqueda" class="form-text">
+                Puede buscar por nombre o autor de la canción.
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Buscar</button>
+    </form>
+    <div>
+        <a href='/musica/vista-crear'>
+            <button class='btn btn-success'>
+                Crear nueva canción
+            </button>
+        </a>
+    </div>
+    <table class="table text-center">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Género</th>
+            <th scope="col">Número de Reproducciones</th>
+			<th scope="col">Fecha de Lanzamiento</th>
+			<th scope="col">Videoclip</th>
+            <th scope="col">Eliminar</th>
+            <th scope="col">Editar</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% datos.musica.forEach( (objeto) => { %>
+        <tr>
+            <th><%=objeto.id%></th>
+            <th><%=objeto.nombre%></th>
+            <th><%=objeto.autor%></th>
+            <th><%=objeto.genero%></th>
+			<th><%=objeto.numeroReproducciones%></th>
+            <th><%=(objeto.fechaLanzamiento.getDate()+1)+ "/" + (objeto.fechaLanzamiento.getMonth()+1) + "/" + objeto.fechaLanzamiento.getFullYear()%></th>           
+		    <th><%=objeto.videoclip%></th>
+           
+		   
+            <th>
+                <form   action='/musica/eliminar-musica/<%= objeto.id %>'
+                        method='post'>
+                    <button class='btn btn-danger'> Eliminar </button>
+                </form>
+            </th>
+			<th>
+                <form action="/musica/actualizar-musica/<%=objeto.id%>" method="post">
+
+                    <button class="btn btn-dark">  Actualizar </button>
+
+                </form>
+            </th>
+
+        </tr>
+        <% } ) %>
+        </tbody>
+    </table>
+</div>
+
+<%- include('../comunes/footer') %>
+
+
+
+
